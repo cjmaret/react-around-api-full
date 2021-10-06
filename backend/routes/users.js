@@ -4,11 +4,12 @@ const {
   getUsers, getUser, updateProfile, updateAvatar,
 } = require('../controllers/users');
 const { celebrate, Joi } = require('celebrate');
-import validator from "validator";
 
-function validateUrl(string) {
-  return validator.isURL(string);
-}
+// import validator from "validator";
+
+// function validateUrl(string) {
+//   return validator.isURL(string);
+// }
 
 router.get('/', [celebrate({
   body: Joi.object().keys({
