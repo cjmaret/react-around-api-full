@@ -5,11 +5,11 @@ const {
 } = require('../controllers/users');
 const { celebrate, Joi } = require('celebrate');
 
-// import validator from "validator";
+const { validator } = require('validator');
 
-// function validateUrl(string) {
-//   return validator.isURL(string);
-// }
+function validateUrl(string) {
+  return validator.isURL(string);
+}
 
 router.get('/', [celebrate({
   body: Joi.object().keys({
