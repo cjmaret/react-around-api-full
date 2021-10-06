@@ -22,8 +22,7 @@ router.get(
       body: Joi.object().keys({
         name: Joi.string().required().min(2).max(30),
         link: Joi.string().required().custom(validateUrl),
-        owner: Joi.required().min(2).max(30),
-        likes: Joi.required().email(),
+        owner: Joi.objectId().required().min(2).max(30),
         createdAt: Joi.date(),
       }),
     }),
@@ -39,8 +38,7 @@ router.post(
       body: Joi.object().keys({
         name: Joi.string().required().min(2).max(30),
         link: Joi.string().required().custom(validateUrl),
-        owner: Joi.required().min(2).max(30),
-        likes: Joi.required().email(),
+        owner: Joi.objectId().required().min(2).max(30),
         createdAt: Joi.date(),
       }),
     }),
@@ -56,8 +54,7 @@ router.delete(
       body: Joi.object().keys({
         name: Joi.string().required().min(2).max(30),
         link: Joi.string().required().custom(validateUrl),
-        owner: Joi.required().min(2).max(30),
-        likes: Joi.required().email(),
+        owner: Joi.objectId().required().min(2).max(30),
         createdAt: Joi.date(),
       }),
     }),
@@ -73,8 +70,7 @@ router.put(
       body: Joi.object().keys({
         name: Joi.string().required().min(2).max(30),
         link: Joi.string().required().custom(validateUrl),
-        owner: Joi.required().min(2).max(30),
-        likes: Joi.required().email(),
+        owner: Joi.objectId().required().min(2).max(30),
         createdAt: Joi.date(),
       }),
     }),
@@ -90,8 +86,7 @@ router.delete(
       body: Joi.object().keys({
         name: Joi.string().required().min(2).max(30),
         link: Joi.string().required().custom(validateUrl),
-        owner: Joi.required().min(2).max(30),
-        likes: Joi.required().email(),
+        owner: Joi.objectId().required().min(2).max(30),
         createdAt: Joi.date(),
       }),
     }),
