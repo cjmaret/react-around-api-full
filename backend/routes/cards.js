@@ -9,7 +9,7 @@ const {
 } = require("../controllers/cards");
 const { celebrate, Joi } = require("celebrate");
 
-const { validator } = require('validator');
+const { validator } = require("validator");
 
 function validateUrl(string) {
   return validator.isURL(string);
@@ -17,81 +17,57 @@ function validateUrl(string) {
 
 router.get(
   "/",
-  [
-    celebrate({
-      body: Joi.object().keys({
-        name: Joi.string().required().min(2).max(30),
-        link: Joi.string().required().custom(validateUrl),
-        owner: Joi.objectId().required().min(2).max(30),
-        createdAt: Joi.date(),
-      }),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required().min(2).max(30),
+      link: Joi.string().required().custom(validateUrl),
     }),
-    auth,
-  ],
+  }),
+
   getCards
 );
 
 router.post(
   "/",
-  [
-    celebrate({
-      body: Joi.object().keys({
-        name: Joi.string().required().min(2).max(30),
-        link: Joi.string().required().custom(validateUrl),
-        owner: Joi.objectId().required().min(2).max(30),
-        createdAt: Joi.date(),
-      }),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required().min(2).max(30),
+      link: Joi.string().required().custom(validateUrl),
     }),
-    auth,
-  ],
+  }),
   createCard
 );
 
 router.delete(
   "/:id",
-  [
-    celebrate({
-      body: Joi.object().keys({
-        name: Joi.string().required().min(2).max(30),
-        link: Joi.string().required().custom(validateUrl),
-        owner: Joi.objectId().required().min(2).max(30),
-        createdAt: Joi.date(),
-      }),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required().min(2).max(30),
+      link: Joi.string().required().custom(validateUrl),
     }),
-    auth,
-  ],
+  }),
   deleteCard
 );
 
 router.put(
   "/:cardId/likes",
-  [
-    celebrate({
-      body: Joi.object().keys({
-        name: Joi.string().required().min(2).max(30),
-        link: Joi.string().required().custom(validateUrl),
-        owner: Joi.objectId().required().min(2).max(30),
-        createdAt: Joi.date(),
-      }),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required().min(2).max(30),
+      link: Joi.string().required().custom(validateUrl),
     }),
-    auth,
-  ],
+  }),
   likeCard
 );
 
 router.delete(
   "/:cardId/likes",
-  [
-    celebrate({
-      body: Joi.object().keys({
-        name: Joi.string().required().min(2).max(30),
-        link: Joi.string().required().custom(validateUrl),
-        owner: Joi.objectId().required().min(2).max(30),
-        createdAt: Joi.date(),
-      }),
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().required().min(2).max(30),
+      link: Joi.string().required().custom(validateUrl),
     }),
-    auth,
-  ],
+  }),
   dislikeCard
 );
 

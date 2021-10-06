@@ -8,8 +8,9 @@ const rateLimit = require("express-rate-limit");
 const cardsRouter = require("./routes/cards");
 const usersRouter = require("./routes/users");
 const { login, createUser } = require("./controllers/users");
-const { errors } = require('celebrate');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { errors } = require("celebrate");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
+const auth = require("./middlewares/auth");
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -26,17 +27,19 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use("/cards", cardsRouter);
-
-app.use("/users", usersRouter);
-
 app.get("*", (req, res) => {
   res.status(404).send({ message: "Requested resource not found" });
 });
 
-app.post("/signin", auth, login);
+app.post("/signin", login);
 
-app.post("/signup", auth, createUser);
+app.post("/signup", createUser);
+
+app.use(auth);
+
+app.use("/cards", cardsRouter);
+
+app.use("/users", usersRouter);
 
 app.use(errorLogger);
 
