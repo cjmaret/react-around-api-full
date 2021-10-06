@@ -1,0 +1,27 @@
+@import url(./_visible/image-card__trash_visible.css);
+@import url(./_hidden/image-card__trash_hidden.css);
+
+.image-card__trash {
+    background-image: url("../../../images/trash.svg");
+    background-color: transparent;
+    z-index: 1;
+    width: 18px;
+    height: 19.3px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    padding: 0;
+    border: none;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.image-card__trash:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.image-card__trash:focus {
+    outline: 0;
+}
+

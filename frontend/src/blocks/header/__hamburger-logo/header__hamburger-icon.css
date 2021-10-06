@@ -1,0 +1,13 @@
+@media only screen and (max-width: 550px) {
+    .header__hamburger-icon {
+        width: 30px;
+        height: 30px;
+        margin: auto 20px auto 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .header__hamburger-icon:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    }
+}

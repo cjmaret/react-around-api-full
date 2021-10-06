@@ -1,0 +1,26 @@
+@import url("./__title/edit-box__title.css");
+@import url("./__inputs/edit-box__inputs.css");
+@import url("./__input/edit-box__input.css");
+@import url("./__button/edit-box__button.css");
+@import url("./__input-group/edit-box__input-group.css");
+@import url("./__input/_type/_error/edit-box__input_type_error.css");
+@import url("./__button/_inactive/edit-box__button_inactive.css");
+@import url("./__input-error/_active/edit-box__input-error_active.css");
+
+.edit-box {
+    position: relative;
+    top: 0;
+    width: 430px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    border: none;
+}
+
+@media only screen and (max-width: 550px) {
+    .edit-box {
+        width: 100%;
+    }
+}

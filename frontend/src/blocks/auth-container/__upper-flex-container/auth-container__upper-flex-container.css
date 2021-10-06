@@ -1,0 +1,9 @@
+.auth-container__upper-flex-container {
+    margin-bottom: 216px;
+}
+
+@media only screen and (max-width: 320px) {
+    .auth-container__upper-flex-container {
+        margin-bottom: 173px;
+    }
+}

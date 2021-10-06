@@ -1,0 +1,5 @@
+.edit-box__button_inactive {
+    background-color: #E5E5E5;
+    color: rgba(0,0,0,0.2);
+    border: 2px solid rgba(0,0,0,0.2);
+}

@@ -1,0 +1,17 @@
+.edit-box__title {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    margin-top: 34px;
+    margin-left: 36px;
+    text-align: left;
+}
+
+@media only screen and (max-width: 550px) {
+    .edit-box__title {
+        margin-top: 25px;
+        margin-left: 22px;
+        font-size: 18px;
+        line-height: 21.78px;
+    }
+}

@@ -1,0 +1,20 @@
+.edit-box__input-error_active {
+    color: #FF0000;
+    font-family: "Inter", serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    display: block;
+    position: absolute;
+    top: 35px;
+    width: 90%;
+    text-align: left;
+    left: 31px;
+}
+
+
+@media only screen and (max-width: 550px) {
+    .edit-box__input-error_active {
+        left: 19px;
+    }
+}

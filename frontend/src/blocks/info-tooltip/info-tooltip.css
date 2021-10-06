@@ -1,0 +1,10 @@
+@import url('./__image/info-tooltip__image.css');
+@import url('./__title/info-tooltip__title.css');
+
+.info-tooltip {
+    max-width: 430px;
+    width: 89.95%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin: 0 auto;
+}

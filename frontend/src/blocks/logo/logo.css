@@ -1,0 +1,25 @@
+.logo {
+    margin-bottom: 41px;
+    max-width: 176px;
+}
+
+@media only screen and (max-width: 920px) {
+    .logo{
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .logo{
+        margin: 30px 0 30px 20px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .logo {
+        width: 126px;
+        height: 24px;
+        margin-left: 30px;
+        margin-bottom: 28px;
+    }
+}

@@ -1,0 +1,17 @@
+.info-tooltip__title {
+    max-width: 358px;
+    width: 83.25%;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    text-align: center;
+    color: #000000;
+    margin: 0 auto 60px auto;
+}
+
+@media screen and (max-width: 550px) {
+    .info-tooltip__title {
+        font-size: 20px;
+        line-height: 24.2px;
+    }
+}

@@ -1,0 +1,23 @@
+@import url("./__heart/image-card__heart.css");
+@import url("./__image/image-card__image.css");
+@import url("./__text/image-card__text.css");
+@import url("./__title/image-card__title.css");
+@import url("./__heart/_liked/image-card__heart_liked.css");
+@import url("./__trash/image-card__trash.css");
+@import url("./__heart-group/image-card__heart-group.css");
+@import url("./__heart-number/image-card__heart-number.css");
+
+
+.image-card {
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media only screen and (max-width: 911px) {
+
+    .image-card {
+        margin: auto;
+    }
+}

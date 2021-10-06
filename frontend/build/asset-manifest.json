@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/react-around-auth/static/css/main.635dd5b9.chunk.css",
+    "main.js": "/react-around-auth/static/js/main.9b41fb77.chunk.js",
+    "main.js.map": "/react-around-auth/static/js/main.9b41fb77.chunk.js.map",
+    "runtime-main.js": "/react-around-auth/static/js/runtime-main.32fee93e.js",
+    "runtime-main.js.map": "/react-around-auth/static/js/runtime-main.32fee93e.js.map",
+    "static/js/2.31690b83.chunk.js": "/react-around-auth/static/js/2.31690b83.chunk.js",
+    "static/js/2.31690b83.chunk.js.map": "/react-around-auth/static/js/2.31690b83.chunk.js.map",
+    "static/js/3.f10b7417.chunk.js": "/react-around-auth/static/js/3.f10b7417.chunk.js",
+    "static/js/3.f10b7417.chunk.js.map": "/react-around-auth/static/js/3.f10b7417.chunk.js.map",
+    "index.html": "/react-around-auth/index.html",
+    "static/css/main.635dd5b9.chunk.css.map": "/react-around-auth/static/css/main.635dd5b9.chunk.css.map",
+    "static/js/2.31690b83.chunk.js.LICENSE.txt": "/react-around-auth/static/js/2.31690b83.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-around-auth/static/media/trash.8cb59aa9.svg",
+    "static/media/hamburger_icon_white.a3d24b6c.svg": "/react-around-auth/static/media/hamburger_icon_white.a3d24b6c.svg",
+    "static/media/image-failure.df8eddf6.svg": "/react-around-auth/static/media/image-failure.df8eddf6.svg",
+    "static/media/image-success.1b6082f8.svg": "/react-around-auth/static/media/image-success.1b6082f8.svg",
+    "static/media/logo.4e8e0a1d.svg": "/react-around-auth/static/media/logo.4e8e0a1d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.32fee93e.js",
+    "static/js/2.31690b83.chunk.js",
+    "static/css/main.635dd5b9.chunk.css",
+    "static/js/main.9b41fb77.chunk.js"
+  ]
+}

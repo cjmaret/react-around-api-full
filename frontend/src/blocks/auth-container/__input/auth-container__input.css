@@ -1,0 +1,22 @@
+.auth-container__input {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: solid 2px #CCCCCC;
+    height: 27px;
+    background-color: transparent;
+    color: white;
+}
+
+.auth-container__input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+    margin-bottom: 13px;
+    padding: 13px 0;
+}
+
+.auth-container__input:focus {
+    outline: none;
+}

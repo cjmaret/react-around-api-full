@@ -1,0 +1,27 @@
+.profile__line-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    margin-right: 0;
+}
+
+@media only screen and (max-width: 911px) {
+    .profile__line-top {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .profile__line-top {
+        width: 79%;
+    }
+}
+
+@media only screen and (max-width: 704px) {
+    .profile__line-top {
+        width: 90%;
+        margin: auto;
+        justify-content: center;
+        margin-bottom: 14px;
+    }
+}

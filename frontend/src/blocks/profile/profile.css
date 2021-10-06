@@ -1,0 +1,36 @@
+@import url("./__details/profile__details.css");
+@import url("./__button-add/profile__button-add.css");
+@import url("./__button-edit/profile__button-edit.css");
+@import url("./__image/profile__image.css");
+@import url("./__info/profile__info.css");
+@import url("./__line-top/profile__line-top.css");
+@import url("./__subtitle/profile__subtitle.css");
+@import url("./__title/profile__title.css");
+@import url("./__image-group/profile__image-group.css");
+@import url("./__image-overlay/profile__image-overlay.css");
+
+
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 911px) {
+    .profile {
+        width: 85%;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 704px) {
+    .profile {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .profile {
+        width: 100%;
+    }
+}

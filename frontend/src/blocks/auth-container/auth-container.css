@@ -1,0 +1,22 @@
+@import url('./__input-group/auth-container__input-group.css');
+@import url('./__input/auth-container__input.css');
+@import url('./__lower-flex-container/auth-container__lower-flex-container.css');
+@import url('./__submit-button/auth-container__submit-button.css');
+@import url('./__switch-link/auth-container__switch-link.css');
+@import url('./__title/auth-container__title.css');
+@import url('./__upper-flex-container/auth-container__upper-flex-container.css');
+
+.auth-container {
+    max-width: 358px;
+    width: 81.25%;
+    margin: 60px auto 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 320px) {
+    .auth-container {
+        margin: 40px auto 42px auto;
+    }
+}

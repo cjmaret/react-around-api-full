@@ -1,0 +1,20 @@
+@import url('./_type/header__info-group_type_mobile.css');
+
+.header__info-group {
+    display: flex;
+    align-items: flex-start;
+}
+
+@media only screen and (max-width: 920px) {
+    .header__info-group{
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .header__info-group{
+        justify-content: center;
+        align-items: center;
+    }
+}
+

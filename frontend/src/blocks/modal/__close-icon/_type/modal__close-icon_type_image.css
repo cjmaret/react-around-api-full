@@ -1,0 +1,41 @@
+.modal__close-icon_type_image {
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    transition: .4s ease;
+    z-index: 5;
+    background-image: url("../../../../images/close-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    border: none;
+    position: absolute;
+    right: -50px;
+    top: -50px;
+}
+
+.modal__close-icon_type_image:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+.modal__close-icon_type_image:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 550px) {
+    .image-expand__close-icon {
+        width: 35px;
+        height: 35px;
+        top: -30px;
+        right: -30px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .modal__close-icon_type_image {
+        width: 26px;
+        height: 26px;
+    }
+}

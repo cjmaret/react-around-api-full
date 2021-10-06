@@ -1,0 +1,5 @@
+@media only screen and (max-width: 550px) {
+    .header__link_type_mobile {
+        margin: 0 0 40px 0;
+    }
+}

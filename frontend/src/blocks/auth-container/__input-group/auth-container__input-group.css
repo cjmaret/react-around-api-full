@@ -1,0 +1,7 @@
+.auth-container__input-group {
+    margin-bottom: 30px;
+}
+
+.auth-container__input-group:last-child {
+    margin-bottom: 0;
+}

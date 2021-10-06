@@ -1,0 +1,24 @@
+.auth-container__switch-link {
+    position: relative;
+    display: inline;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: opacity 0.4s ease;
+}
+
+.auth-container__switch-link:hover {
+    opacity: 0.6;
+}
+
+@media only screen and (max-width: 320px) {
+    .auth-container__switch-link {
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+}

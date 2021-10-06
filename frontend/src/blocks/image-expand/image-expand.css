@@ -1,0 +1,21 @@
+@import url("./__container/image-expand__container.css");
+@import url("./__image/image-expand__image.css");
+@import url("./__title/image-expand__title.css");
+@import url("./__info/image-expand__info.css");
+
+.image-expand {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}

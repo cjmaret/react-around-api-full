@@ -1,0 +1,9 @@
+@media only screen and (max-width: 550px) {    
+    .header__info-group_type_mobile{
+        margin: 40px 0 0 0;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    }
+}

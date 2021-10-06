@@ -1,0 +1,6 @@
+@media only screen and (max-width: 550px) {
+    .header__logo-group {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,40 @@
+.modal__close-icon {
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    transition: .4s ease;
+    z-index: 5;
+    position: relative;
+    top: 10px;
+    background-image: url("../../../images/close-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    border: none;
+}
+
+.modal__close-icon:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+.modal__close-icon:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 550px) {
+    .modal__close-icon {
+        width: 35px;
+        height: 35px;
+        top: 0;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .modal__close-icon {
+        width: 26px;
+        height: 26px;
+    }
+}

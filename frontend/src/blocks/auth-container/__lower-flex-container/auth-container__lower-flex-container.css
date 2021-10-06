@@ -1,0 +1,4 @@
+.auth-container__lower-flex-container {
+    display: flex;
+    flex-direction: column;
+}

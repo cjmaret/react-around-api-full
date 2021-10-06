@@ -1,0 +1,13 @@
+@import url('./_type/modal__container_type_info-tooltip.css');
+
+.modal__container {
+    width: 530px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 550px) {
+    .modal__container {
+        width: 282px;
+    }
+}

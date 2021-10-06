@@ -1,0 +1,9 @@
+@media screen and (max-width: 550px) {
+    .modal__close-icon_type_info-tooltip {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+}
