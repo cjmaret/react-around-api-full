@@ -1,5 +1,6 @@
 /* eslint-disable quote-props */
 const router = require("express").Router();
+const validator = require("validator");
 const {
   getCards,
   createCard,
@@ -8,7 +9,6 @@ const {
   dislikeCard,
 } = require("../controllers/cards");
 const { celebrate, Joi } = require("celebrate");
-import validator from "validator";
 
 function validateUrl(string) {
   return validator.isURL(string);
