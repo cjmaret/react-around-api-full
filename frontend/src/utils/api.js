@@ -117,7 +117,7 @@ class Api {
 const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-12",
     headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer token`,
         "Content-Type": "application/json"
     }
 });

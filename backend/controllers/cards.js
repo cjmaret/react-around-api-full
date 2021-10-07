@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 const Card = require("../models/card");
+const AuthorizationError = require('../errors/AuthorizationError');
+const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.getCards = (req, res) => {
   Card.find({})
@@ -27,7 +29,7 @@ module.exports.deleteCard = (req, res) => {
   Card.findByIdAndRemove(req.params.id)
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: "Card could not be found" });
+        throw new NotFoundError('Card could not be found');
       } else if (card.owner._id !== req.user._id) {
         return res.status(403).send({ message: "That's not your card, baby!" });
       }
@@ -49,7 +51,7 @@ module.exports.likeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: "Card could not be found" });
+        throw new NotFoundError('Card could not be found');
       }
       res.status(200).send({ data: card });
     })
@@ -69,7 +71,7 @@ module.exports.dislikeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: "Card could not be found" });
+        throw new NotFoundError('Card could not be found');
       }
       res.status(200).send({ data: card });
     })

@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const AuthorizationError = require('../errors/AuthorizationError');
+const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -12,7 +14,7 @@ module.exports.getUser = (req, res) => {
   User.findById(req.params.id)
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: "User could not be found" });
+        throw new NotFoundError('No user with matching ID found');
       }
       res.status(200).send({ data: user });
     })
@@ -49,7 +51,7 @@ module.exports.updateProfile = (req, res) => {
   )
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: "User could not be found" });
+        throw new NotFoundError('User could not be found');
       } else if (user._id !== req.user._id) {
         return res
           .status(403)
@@ -75,7 +77,7 @@ module.exports.updateAvatar = (req, res) => {
   )
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: "User could not be found" });
+        throw new NotFoundError('User could not be found');
       } else if (user._id !== req.user._id) {
         return res
           .status(403)
@@ -103,6 +105,6 @@ module.exports.login = (req, res) => {
       res.send({ token });
     })
     .catch((err) => {
-      res.status(401).send({ message: err.message });
+      throw new AuthorizationError('Not authorized');
     });
 };
