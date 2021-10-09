@@ -38,6 +38,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [headerEmail, setHeaderEmail] = React.useState();
+  const [token, setToken] = React.useState(localStorage.getItem('token'));
 
   React.useEffect(() => {
     const localEmailAddress = JSON.parse(localStorage.getItem("email address"));
@@ -46,7 +47,7 @@ function App() {
 
   React.useEffect(() => {
     api
-      .getUserInfo()
+      .getUserInfo(token)
       .then((res) => {
         setCurrentUser(res);
       })
@@ -58,9 +59,7 @@ function App() {
   }, []);
 
   function handleTokenCheck() {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-
+    if (token) {
       auth
         .checkToken(token)
         .then((res) => {
@@ -123,6 +122,8 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
+          localStorage.setItem('token', data.token);
+          setToken(data.token);
           setEmail("");
           setPassword("");
           handleLogin(e);
@@ -176,7 +177,7 @@ function App() {
 
   function handleUpdateUser(info) {
     api
-      .setUserInfo(info)
+      .setUserInfo(info, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -186,7 +187,7 @@ function App() {
 
   function handleUpdateAvatar(info) {
     api
-      .setUserAvatar(info)
+      .setUserAvatar(info, token)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -196,7 +197,7 @@ function App() {
 
   function handleAddPlaceSubmit({ link, name }) {
     api
-      .addCard({ link, name })
+      .addCard({ link, name }, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -206,7 +207,7 @@ function App() {
 
   React.useEffect(() => {
     api
-      .getCardList()
+      .getCardList(token)
       .then((res) => {
         setCards(res);
       })
@@ -217,7 +218,7 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser?._id);
     if (!isLiked) {
       api
-        .addLike(card._id, !isLiked)
+        .addLike(card._id, !isLiked, token)
         .then((newCard) => {
           setCards((state) =>
             state.map((c) => (c._id === card._id ? newCard : c))
@@ -226,7 +227,7 @@ function App() {
         .catch((err) => console.log(err));
     } else {
       api
-        .removeLike(card._id, !isLiked)
+        .removeLike(card._id, !isLiked, token)
         .then((newCard) => {
           setCards((state) =>
             state.map((c) => (c._id === card._id ? newCard : c))
@@ -238,7 +239,7 @@ function App() {
 
   function handleCardDelete(card) {
     api
-      .removeCard(card._id)
+      .removeCard(card._id, token)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
         closeAllPopups();
