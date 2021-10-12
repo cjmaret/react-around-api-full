@@ -21,13 +21,17 @@ const auth = require("./middlewares/auth");
 const user = require("./models/user");
 
 const app = express();
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://cjmaret.students.nomoreparties.site');
   res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
+    "Access-Control-Allow-Origin",
+    "https://www.cjmaret.students.nomoreparties.site"
   );
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
   next();
 });
 
@@ -41,7 +45,7 @@ const limiter = rateLimit({
 });
 
 console.log(token);
-console.log('hi!');
+console.log("hi!");
 
 mongoose.connect("mongodb://localhost:27017/aroundb");
 
