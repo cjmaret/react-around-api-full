@@ -303,7 +303,7 @@ function App() {
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </ProtectedRoute>
-        <Route path="/login">
+        <Route path="/signin">
           <Login
             email={email}
             password={password}
@@ -315,7 +315,7 @@ function App() {
             setIsInfoTooltipPopupOpen={setIsInfoTooltipPopupOpen}
           />
         </Route>
-        <Route path="/register">
+        <Route path="/signup">
           <Register
             email={email}
             password={password}

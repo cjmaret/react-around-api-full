@@ -7,13 +7,13 @@ function Register(props) {
     <>
       <Header
         linkTitle="Log in"
-        pageLink="./login"
+        pageLink="./signin"
         setIsInfoTooltipPopupOpen={props.setIsInfoTooltipPopupOpen}
       />
       <AuthorizationForm
         title="Sign up"
         buttonTitle="Sign up"
-        pageLink="./login"
+        pageLink="./signin"
         pageLinkTitle="Already a member? Log in here!"
         email={props.email}
         password={props.password}

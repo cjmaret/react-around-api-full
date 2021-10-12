@@ -7,13 +7,13 @@ function Login(props) {
     <>
       <Header
         linkTitle="Sign up"
-        pageLink="./register"
+        pageLink="./signup"
         setIsInfoTooltipPopupOpen={props.setIsInfoTooltipPopupOpen}
       />
       <AuthorizationForm
         title="Log in"
         buttonTitle="Log in"
-        pageLink="./register"
+        pageLink="./signup"
         pageLinkTitle="Not a member yet? Sign up here!"
         email={props.email}
         password={props.password}

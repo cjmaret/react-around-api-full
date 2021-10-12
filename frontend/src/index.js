@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename="react-around-auth">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </React.StrictMode>,
