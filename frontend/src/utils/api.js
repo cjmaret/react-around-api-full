@@ -129,7 +129,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  baseUrl: "https://api.cjmaret.students.nomoreparties.site",
 });
 
 export default api;
