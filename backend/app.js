@@ -39,9 +39,6 @@ const limiter = rateLimit({
   max: 100,
 });
 
-console.log(token);
-console.log("hi!");
-
 mongoose.connect("mongodb://localhost:27017/aroundb");
 
 app.use(limiter);
