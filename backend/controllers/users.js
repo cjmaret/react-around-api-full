@@ -1,8 +1,9 @@
 /* eslint-disable consistent-return */
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const AuthorizationError = require('../errors/AuthorizationError');
-const NotFoundError = require('../errors/NotFoundError');
+const { NODE_ENV, JWT_SECRET } = process.env;
+const AuthorizationError = require("../errors/AuthorizationError");
+const NotFoundError = require("../errors/NotFoundError");
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -14,7 +15,7 @@ module.exports.getUser = (req, res) => {
   User.findById(req.params.id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('No user with matching ID found');
+        throw new NotFoundError("No user with matching ID found");
       }
       res.status(200).send({ data: user });
     })
@@ -29,7 +30,7 @@ module.exports.getUser = (req, res) => {
 module.exports.createUser = (req, res) => {
   const { name, about, avatar, email, password } = req.body;
 
-  User.create({ name, about, avatar, email, password })
+  bcrypt.hash(password, 10).then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
       if (err.name === "ValidationError") {
@@ -51,7 +52,7 @@ module.exports.updateProfile = (req, res) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User could not be found');
+        throw new NotFoundError("User could not be found");
       } else if (user._id !== req.user._id) {
         return res
           .status(403)
@@ -77,7 +78,7 @@ module.exports.updateAvatar = (req, res) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User could not be found');
+        throw new NotFoundError("User could not be found");
       } else if (user._id !== req.user._id) {
         return res
           .status(403)
@@ -99,12 +100,18 @@ module.exports.login = (req, res) => {
   return User.findUserByCredentials(email, password)
     .select("+password")
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, "secret-key", {
-        expiresIn: "7d",
-      });
+      if (!user) {
+        throw new AuthorizationError("Not Authorized");
+      }
+      // Create token
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === "production" ? JWT_SECRET : "some-secret-key",
+        { expiresIn: "7d" }
+      );
+
+      // Return token
       res.send({ token });
     })
-    .catch((err) => {
-      throw new AuthorizationError('Not authorized');
-    });
+    .catch(next);
 };

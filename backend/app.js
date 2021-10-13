@@ -7,11 +7,6 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 var cors = require("cors");
 require("dotenv").config();
-const { NODE_ENV, JWT_SECRET } = process.env;
-const token = jwt.sign(
-  { _id: user._id },
-  NODE_ENV === "production" ? JWT_SECRET : "dev-secret"
-);
 const cardsRouter = require("./routes/cards");
 const usersRouter = require("./routes/users");
 const { login, createUser } = require("./controllers/users");
