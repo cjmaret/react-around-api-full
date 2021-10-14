@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 const { NODE_ENV, JWT_SECRET } = process.env;
 const AuthorizationError = require("../errors/AuthorizationError");
 const NotFoundError = require("../errors/NotFoundError");
@@ -30,7 +31,9 @@ module.exports.getUser = (req, res) => {
 module.exports.createUser = (req, res) => {
   const { name, about, avatar, email, password } = req.body;
 
-  bcrypt.hash(password, 10).then((hash) => User.create({ name, about, avatar, email, password: hash }))
+  bcrypt
+    .hash(password, 10)
+    .then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
       if (err.name === "ValidationError") {
