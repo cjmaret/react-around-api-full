@@ -1,13 +1,10 @@
-export const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://api.cjmaret.students.nomoreparties.site"
-    : "http://localhost:3000";
+export const BASE_URL = "https://api.cjmaret.students.nomoreparties.site";
 
 function returnRes(res) {
   if (res.ok) {
-    return res.json();
+      return res.json();
   } else {
-    return Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(`Error: ${res.status}`);
   }
 }
 
@@ -21,7 +18,7 @@ export const register = (email, password) => {
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
-      return returnRes(res);
+        return returnRes(res);
     })
     .then((res) => {
       return res;

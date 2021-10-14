@@ -129,10 +129,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl:
-    process.env.NODE_ENV === "production"
-      ? "https://api.cjmaret.students.nomoreparties.site"
-      : "http://localhost:3000",
+  baseUrl: "https://api.cjmaret.students.nomoreparties.site",
 });
 
 export default api;

@@ -29,20 +29,6 @@ router.get(
 );
 
 router.get(
-  "/me",
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
-      about: Joi.string().min(2).max(30),
-      avatar: Joi.string().custom(validateUrl),
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    }),
-  }),
-  getUser
-);
-
-router.get(
   "/:id",
   celebrate({
     body: Joi.object().keys({
@@ -82,6 +68,20 @@ router.patch(
     }),
   }),
   updateAvatar
+);
+
+router.get(
+  "/me",
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().min(2).max(30),
+      about: Joi.string().min(2).max(30),
+      avatar: Joi.string().custom(validateUrl),
+      email: Joi.string().required().email(),
+      password: Joi.string().required(),
+    }),
+  }),
+  getUser
 );
 
 module.exports = router;
