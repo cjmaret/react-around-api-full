@@ -13,7 +13,6 @@ const { login, createUser } = require("./controllers/users");
 const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
-const user = require("./models/user");
 
 const app = express();
 
