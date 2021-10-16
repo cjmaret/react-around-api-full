@@ -38,7 +38,7 @@ function App() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [headerEmail, setHeaderEmail] = React.useState();
-  const [token, setToken] = React.useState(localStorage.getItem('token'));
+  const [token, setToken] = React.useState(localStorage.getItem("token"));
 
   React.useEffect(() => {
     const localEmailAddress = JSON.parse(localStorage.getItem("email address"));
@@ -49,14 +49,23 @@ function App() {
     api
       .getUserInfo(token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.user);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token, currentUser?._id]);
+
+  React.useEffect(() => {
+    api
+      .getCardList(token)
+      .then((res) => {
+        setCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [token]);
 
   React.useEffect(() => {
     handleTokenCheck();
-  }, []);
+  }, [token]);
 
   function handleTokenCheck() {
     if (token) {
@@ -94,7 +103,7 @@ function App() {
           setIsSuccess(true);
           setIsInfoTooltipPopupOpen(true);
           setTimeout(() => {
-            history.push("/login");
+            history.push("/signin");
             setIsInfoTooltipPopupOpen(false);
           }, 2000);
           setEmail("");
@@ -122,7 +131,7 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem("token", data.token);
           setToken(data.token);
           setEmail("");
           setPassword("");
@@ -138,7 +147,7 @@ function App() {
     localStorage.removeItem("token");
     localStorage.removeItem("email address");
     setLoggedIn(false);
-    history.push("/login");
+    history.push("/signin");
   }
 
   function handleEditProfileClick() {
@@ -199,38 +208,27 @@ function App() {
     api
       .addCard({ link, name }, token)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
 
-  React.useEffect(() => {
-    api
-      .getCardList(token)
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser?._id);
+    const isLiked = card.likes?.some((i) => i === currentUser?._id);
     if (!isLiked) {
       api
-        .addLike(card._id, !isLiked, token)
+        .addLike(card._id, token)
         .then((newCard) => {
-          setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+          setCards((prevState) => prevState.map((cardItem) => (cardItem._id === card._id ? newCard : cardItem))
           );
         })
         .catch((err) => console.log(err));
     } else {
       api
-        .removeLike(card._id, !isLiked, token)
+        .removeLike(card._id, token)
         .then((newCard) => {
-          setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+          setCards((prevState) =>  prevState.map((cardItem) => (cardItem._id === card._id ? newCard : cardItem))
           );
         })
         .catch((err) => console.log(err));
@@ -329,10 +327,10 @@ function App() {
         </Route>
       </Switch>
       <InfoTooltip
-            isSuccess={isSuccess}
-            isOpen={isInfoTooltipPopupOpen}
-            onClose={closeAllPopups}
-          />
+        isSuccess={isSuccess}
+        isOpen={isInfoTooltipPopupOpen}
+        onClose={closeAllPopups}
+      />
     </CurrentUserContext.Provider>
   );
 }

@@ -9,10 +9,13 @@ const {
 } = require("../controllers/cards");
 const { celebrate, Joi } = require("celebrate");
 
-const { validator } = require("validator");
+const  validator  = require("validator");
 
 function validateUrl(string) {
-  return validator.isURL(string);
+  if (!validator.isURL(string)) {
+    throw new Error('Invalid URL');
+  }
+  return string;
 }
 
 router.get(
@@ -20,7 +23,7 @@ router.get(
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
-      link: Joi.string().required().custom(validateUrl),
+      link: Joi.string().required(),
     }),
   }),
 
@@ -40,34 +43,16 @@ router.post(
 
 router.delete(
   "/:id",
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().required().min(2).max(30),
-      link: Joi.string().required().custom(validateUrl),
-    }),
-  }),
   deleteCard
 );
 
 router.put(
-  "/:cardId/likes",
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().required().min(2).max(30),
-      link: Joi.string().required().custom(validateUrl),
-    }),
-  }),
+  "/likes/:cardId",
   likeCard
 );
 
 router.delete(
-  "/:cardId/likes",
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().required().min(2).max(30),
-      link: Joi.string().required().custom(validateUrl),
-    }),
-  }),
+  "/likes/:cardId",
   dislikeCard
 );
 

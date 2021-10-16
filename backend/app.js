@@ -13,29 +13,17 @@ const { login, createUser } = require("./controllers/users");
 const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
+const NotFoundError = require("./errors/NotFoundError");
 
 const app = express();
-
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://www.cjmaret.students.nomoreparties.site"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
-  next();
-});
 
 app.use(cors());
 app.options("*", cors());
 
 const { PORT = 3000 } = process.env;
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 1 * 60 * 1000,
+  max: 500,
 });
 
 mongoose.connect("mongodb://localhost:27017/aroundb");
@@ -45,6 +33,12 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Server will crash now');
+  }, 0);
+}); 
 
 app.post("/signin", login);
 
@@ -57,7 +51,7 @@ app.use("/cards", cardsRouter);
 app.use("/users", usersRouter);
 
 app.get("*", (req, res) => {
-  res.status(404).send({ message: "Requested resource not found" });
+  throw new NotFoundError("Requested resource not found");
 });
 
 app.use(errorLogger);
@@ -65,7 +59,10 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ message: "An error occurred on the server" });
+  res
+    .status(err.statusCode)
+    .send({ message: err.statusCode === 500 ? "Server error" : err.message });
+  next();
 });
 
 app.listen(PORT, () => {

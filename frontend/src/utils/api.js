@@ -60,14 +60,6 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
-    if (!isLiked) {
-      this.addLike(cardId);
-    } else {
-      this.removeLike(cardId);
-    }
-  }
-
   removeCard(cardId, token) {
     return fetch(this._baseUrl + "/cards/" + cardId, {
       headers: {
