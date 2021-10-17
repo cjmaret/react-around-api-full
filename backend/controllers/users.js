@@ -8,6 +8,7 @@ const AuthorizationError = require("../errors/AuthorizationError");
 const NotFoundError = require("../errors/NotFoundError");
 const BadRequestError = require("../errors/BadRequestError");
 const ForbiddenError = require("../errors/ForbiddenError");
+const ConflictError = require("../errors/ConflictError");
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -15,15 +16,21 @@ module.exports.getUsers = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.createUser = (req, res, next) => {
+module.exports.createUser = (req, res, err) => {
   const { name, about, avatar, email, password } = req.body;
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => {
-      res.status(200).send({ data: user });
+      res.status(200).send({ _id: user._id, email: user.email });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === "MongoError" && err.code === 11000) {
+        throw new ConflictError("User already exists!");
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {

@@ -9,11 +9,11 @@ const {
 } = require("../controllers/cards");
 const { celebrate, Joi } = require("celebrate");
 
-const  validator  = require("validator");
+const validator = require("validator");
 
 function validateUrl(string) {
   if (!validator.isURL(string)) {
-    throw new Error('Invalid URL');
+    throw new Error("Invalid URL");
   }
   return string;
 }
@@ -43,16 +43,31 @@ router.post(
 
 router.delete(
   "/:id",
+  celebrate({
+    body: Joi.object().keys({
+      _id: Joi.string().hex(),
+    }),
+  }),
   deleteCard
 );
 
 router.put(
   "/likes/:cardId",
+  celebrate({
+    body: Joi.object().keys({
+      _id: Joi.string().hex(),
+    }),
+  }),
   likeCard
 );
 
 router.delete(
   "/likes/:cardId",
+  celebrate({
+    body: Joi.object().keys({
+      _id: Joi.string().hex(),
+    }),
+  }),
   dislikeCard
 );
 

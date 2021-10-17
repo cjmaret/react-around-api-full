@@ -28,17 +28,18 @@ const limiter = rateLimit({
 
 mongoose.connect("mongodb://localhost:27017/aroundb");
 
-app.use(limiter);
 app.use(helmet());
 app.use(express.json());
 
 app.use(requestLogger);
 
-app.get('/crash-test', () => {
+app.use(limiter);
+
+app.get("/crash-test", () => {
   setTimeout(() => {
-    throw new Error('Server will crash now');
+    throw new Error("Server will crash now");
   }, 0);
-}); 
+});
 
 app.post("/signin", login);
 
