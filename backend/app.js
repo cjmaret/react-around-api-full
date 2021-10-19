@@ -14,6 +14,7 @@ const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/NotFoundError");
+const ConflictError = require('./errors/ConflictError');
 
 const app = express();
 
@@ -60,6 +61,9 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {
+  if (err.name === "MongoError" || err.code === 11000) {
+    throw new ConflictError("User already exists!");
+  }
   res
     .status(err.statusCode)
     .send({ message: err.statusCode === 500 ? "Server error" : err.message });

@@ -16,7 +16,7 @@ module.exports.getUsers = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.createUser = (req, res, err) => {
+module.exports.createUser = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body;
   bcrypt
     .hash(password, 10)
@@ -24,13 +24,8 @@ module.exports.createUser = (req, res, err) => {
     .then((user) => {
       res.status(200).send({ _id: user._id, email: user.email });
     })
-    .catch((err) => {
-      if (err.name === "MongoError" && err.code === 11000) {
-        throw new ConflictError("User already exists!");
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
+
 };
 
 module.exports.login = (req, res, next) => {

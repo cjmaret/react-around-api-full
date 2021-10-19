@@ -9,11 +9,11 @@ const {
 } = require("../controllers/users");
 const { celebrate, Joi } = require("celebrate");
 
-const validator  = require("validator");
+const validator = require("validator");
 
 function validateUrl(string) {
   if (!validator.isURL(string)) {
-    throw new Error('Invalid URL');
+    throw new Error("Invalid URL");
   }
   return string;
 }
@@ -48,6 +48,11 @@ router.get(
 
 router.get(
   "/:id",
+  celebrate({
+    body: Joi.object().keys({
+      _id: Joi.string().hex().length(24),
+    }),
+  }),
   getUserById
 );
 

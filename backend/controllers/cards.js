@@ -21,10 +21,9 @@ module.exports.createCard = (req, res, next) => {
 module.exports.deleteCard = (req, res, next) => {
   Card.findByIdAndRemove(req.params.id)
     .then((card) => {
-      let ownerId = card.owner.toString();
       if (!card) {
         throw new NotFoundError("Card could not be found");
-      } else if (ownerId !== req.user._id) {
+      } else if (card.owner.toString() !== req.user._id) {
         throw new ForbiddenError("That's not your card, baby!");
       }
       res.status(200).send({ data: card });
